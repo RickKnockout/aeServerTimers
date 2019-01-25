@@ -22,6 +22,7 @@ var monthNames    = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "
 var refresh_page      = "";
 var is_refreshing_page    = false;
 var max_timer_to_refresh  = Number.MAX_VALUE;
+console.log('onload fired');
 };
 // return number of days between 2 dates
 function days_between(date1, date2) {
