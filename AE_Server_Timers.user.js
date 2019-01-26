@@ -4,13 +4,6 @@
 // @author              Rick / Aetheric
 // @description         Replaces local with server times
 // @require http://code.jquery.com/jquery-1.7.1.min.js
-// @grant GM_setValue
-// @grant GM_getValue
-// @grant GM_setClipboard
-// @grant unsafeWindow
-// @grant window.close
-// @grant window.focus
-// @grant GM_addStyle
 // @include             http://*.astroempires.com/*
 // @exclude             http://*.astroempires.com/
 // @exclude             http://*.astroempires.com/home.aspx*
