@@ -184,14 +184,14 @@ function timers() {     // updates timers to include durations and end dates
       // set end date
         if (timerFormat == 1) {
           var end_date_ms = server_date_ms + (elem.title * 1000);
-          console.log('server_date_ms1: ' + server_date_ms);
-          console.log('end_date_ms1: ' + end_date_ms);
+          //console.log('server_date_ms1: ' + server_date_ms);
+         // console.log('end_date_ms1: ' + end_date_ms);
           elem.innerHTML += ' - ' + '<span class="comment help">' + putDateTime(new Date(end_date_ms), true) + '</span>';
         }
         if (timerFormat == 2) {
           var end_date_ms = server_date_ms + (elem.title * 1000);
-          console.log('server_date_ms2: ' + server_date_ms);
-          console.log('end_date_ms2: ' + end_date_ms);
+          //console.log('server_date_ms2: ' + server_date_ms);
+          //console.log('end_date_ms2: ' + end_date_ms);
           elem.innerHTML += '<br />' + '<span class="comment">' + putDateTime(new Date(end_date_ms), true) + '</span>';
         }
 
