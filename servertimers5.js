@@ -5,9 +5,9 @@ var diff_last			= 0; 						// To check if time (seconds) have changed
 
 var clientDate_format	= 0; 						// Date format, 0 = "20 Jan 2010", 1 = "Jan 20 2010", 2 = "2010-01-20"
 
-var display_animated_server_time	= false;
-var display_local_time				= false;
-var display_end_time				= false;
+var display_animated_server_time	= true;
+var display_local_time				= true;
+var display_end_time				= true;
 
 var first_display					= true;
 
