@@ -1,11 +1,10 @@
-window.onload = function() { 
 // var start_date     = new Date;       // get script start client date
-var elem = "";
-elem = document.getElementById('server-time');
-var server_date = new Date(elem.title); // retrieve server time from html title element (2010/01/01 01:01:01)
-var server_date_ms = server_date.getTime();
-var start_date = server_date;
-var start_date_ms = server_date.getTime();    // get script start client date milisecounds
+//var elem = "";
+//elem = document.getElementById('server-time');
+//var server_date = new Date(elem.title); // retrieve server time from html title element (2010/01/01 01:01:01)
+//var server_date_ms = server_date.getTime();
+//var start_date = server_date;
+//var start_date_ms = server_date.getTime();    // get script start client date milisecounds
 
 var diff_last     = 0;            // To check if time (seconds) have changed
 var clientDate_format = 0;            // Date format, 0 = "20 Jan 2010", 1 = "Jan 20 2010", 2 = "2010-01-20"
@@ -22,8 +21,7 @@ var monthNames    = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "
 var refresh_page      = "";
 var is_refreshing_page    = false;
 var max_timer_to_refresh  = Number.MAX_VALUE;
-console.log('onload fired');
-};
+
 // return number of days between 2 dates
 function days_between(date1, date2) {
   var elem = "";
