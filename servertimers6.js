@@ -130,7 +130,7 @@ function header_timer() {
 }
 
 // function timers
-var timerFormat = 0; 	// timer format: 0 = h:m:s , 1 = h:m:s - end, 2 = h:m:s <br> end
+var timerFormat = 2; 	// timer format: 0 = h:m:s , 1 = h:m:s - end, 2 = h:m:s <br> end
 
 function timers() {     // updates timers to include durations and end dates
   var now_date = new Date;        // get now date
