@@ -147,6 +147,7 @@
       var server_date = new Date(elem.title); // retrieve server time from html title element (2010/01/01 01:01:01)
       var now = server_date.getTime();        // get now date
       var server_date_ms = server_date.getTime();
+      var start_date_ms = server_date.getTime();    // get script start client date milisecounds
       var diff = (now_date_ms - start_date_ms) / 1000;    // get difference seconds between dates
 
       if (first_display==false)
