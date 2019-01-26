@@ -167,10 +167,9 @@ function timers() {     // updates timers to include durations and end dates
     var elem = document.getElementById('timer' + n); // html element to update
 
     var sec_to_end = elem.title - diff;         // get duration time from html title element
-
+ 
     if (document.getElementById('prod_time_' + n)) {  // used only in empire/production page
       sec_min = Number(document.getElementById('prod_time_' + n).title)
-
       if (sec_to_end < sec_min) sec_to_end = sec_min;
     }
 
@@ -185,10 +184,14 @@ function timers() {     // updates timers to include durations and end dates
       // set end date
         if (timerFormat == 1) {
           var end_date_ms = server_date_ms + (elem.title * 1000);
+          console.log('server_date_ms1: ' + server_date_ms);
+          console.log('end_date_ms1: ' + end_date_ms);
           elem.innerHTML += ' - ' + '<span class="comment help">' + putDateTime(new Date(end_date_ms), true) + '</span>';
         }
         if (timerFormat == 2) {
           var end_date_ms = server_date_ms + (elem.title * 1000);
+          console.log('server_date_ms2: ' + server_date_ms);
+          console.log('end_date_ms2: ' + end_date_ms);
           elem.innerHTML += '<br />' + '<span class="comment">' + putDateTime(new Date(end_date_ms), true) + '</span>';
         }
 
