@@ -223,7 +223,7 @@ function update_timer_after_ajax(element_name) {			// add seconds to timer to co
 	timer = timer +Math.round(diff);
 
 	elem.title = timer;
-	alert(timer);
+	//alert(timer);			//oops
 }
 
 function update_timers() {			// force update timers for example after insert html by javascript
