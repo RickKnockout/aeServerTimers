@@ -21,6 +21,6 @@
 var script=document.createElement('script');
 window.addEventListener('load',
   function(event){
-script.src='https://cdn.jsdelivr.net/gh/cruentus/aeServerTimers/servertimers6.js';
+script.src='https://cdn.jsdelivr.net/gh/cruentus/aeServerTimers/servertimers7.js';
 document.getElementsByTagName('head')[0].appendChild(script);
 }, true);
