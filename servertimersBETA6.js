@@ -375,7 +375,6 @@ function update_timers (class_name,show_changes) {
 	for(n=0; n<timers.length; n++) {
 		elem = timers[n];
 		sec_to_end = elem.title - diff;
-
 		if (document.getElementById('prod_time_' + n)) {
 			sec_min = Number( document.getElementById('prod_time_'+n).title);
 			if (sec_to_end < sec_min ) sec_to_end = sec_min;
@@ -392,6 +391,22 @@ function update_timers (class_name,show_changes) {
 			h = Math.floor(sec_to_end/3600);
 			m = Math.floor( (sec_to_end % 3600)/60 );
 			s = Math.floor( (sec_to_end %60) );
+			if (document.location.href.indexOf('bases_production') > 0) {
+			elem.textContent = h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+				if (display_end_time) {
+					elem2 = document.getElementById('server-time'); // html element to update
+					var server_date = new Date(elem2.title); // retrieve server time from html title element (2010/01/01 01:01:01)
+					var server_date_ms = server_date.getTime();
+					var end_date_ms = server_date_ms + (elem.title * 1000);
+					var end_time = putDateTime(new Date(end_date_ms), true);
+					if (timerFormat==1) {
+						elem.innerHTML += ' - <span class="comment help">' + end_time + '</span>';
+					}
+					if (timerFormat==2) {
+						elem.innerHTML += '<br /><span class="comment help">' + end_time + '</span>';
+					}
+				}
+			}
 			if (show_changes) {
 				elem.textContent = h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
 				if (display_end_time) {
