@@ -135,6 +135,7 @@ function header_timer() {
 var timerFormat = 2; 	// timer format: 0 = h:m:s , 1 = h:m:s - end, 2 = h:m:s <br> end
 
 function timers() {     // updates timers to include durations and end dates
+/**
   var now_date = new Date;        // get now date
   var now_date_ms = now_date.getTime();
   var n = 1;
@@ -211,6 +212,29 @@ function timers() {     // updates timers to include durations and end dates
 
     n++;
   }
+**/
+	var show_changes = true;
+	var n = 1;
+	var sec_min = 0;
+	var elem
+	var now = (new Date).getTime();						// get now date
+	var diff = (now - start_date_ms) / 1000;			// get difference milliseconds between dates
+	
+	if (!timers_converted) convert_timers();
+	
+	if (diff < 30) show_changes = true;
+	else if (window.isActive && (typeof window.isActive === "function")) {
+		if (!window.isActive()) show_changes = false;
+	}
+
+	update_timers('timersec',show_changes);
+	if ((diff < 5) || (diff - lastmin) > 30) { // every minute 
+		lastmin = diff;
+		update_timers('timermin',show_changes);
+		update_timers('timerdone',false);
+	}
+	if ((diff < 5) || (diff - lasthour) > 600) { lasthour = diff; update_timers('timerhour',show_changes); } // every 10mins
+	if ((diff < 5) || (diff - lastday) > 3600) { lastday = diff; update_timers('timerday',show_changes); } // every hour
 }
 
 function update_timer_after_ajax(element_name) {			// add seconds to timer to compensate ajax have loaded later regaring page time
@@ -269,7 +293,7 @@ function timersDisplay_on_interval() {
 	timersDisplay_update();
 }
 function timersDisplay_convert_timer(d) {
-	if (d < 0) {
+/**	if (d < 0) {
 		d = 0
 		return "---"
 	} else {
@@ -277,7 +301,9 @@ function timersDisplay_convert_timer(d) {
 		//return (c < 10 ? "0" + c : c) + ":" + (a < 10 ? "0" + a : a) + ":" + (b < 10 ? "0" + b : b)
 		return c + ":" + (a < 10 ? "0" + a : a) + ":" + (b < 10 ? "0" + b : b)
 	}
+**/
 }
+
 function timersDisplay_convert_clock(f) {
 	var d = Math.floor(f / 3600) % 24, c = d <= 12 ? d : d - 12, e = d < 12 ? "AM" : "PM", a = Math.floor(f / 60) % 60, b = f % 60; a = a < 10 ? "0" + a : a; b = b < 10 ? "0" + b : b;
 	switch (format) {
@@ -338,7 +364,6 @@ function new_timers() {			// updates timers to include durations and end dates
 function update_timers (class_name,show_changes) {
 	var beeped = 0;
 	var timers = document.getElementsByClassName(class_name);
-	//if (show_changes) window.dump('updating class '+class_name+' found '+timers.length+'\n');
 	if (timers.length == 0) return;
 	var now = (new Date).getTime();
 	var diff = (now - start_date) / 1000;
