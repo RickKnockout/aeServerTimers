@@ -430,9 +430,9 @@ function convert_timers() {
 	update_timers('timerday');
 }
 
-
 $(document).ready(function () {
 	timersDisplay();
+	convert_timers();
 });
 
 
