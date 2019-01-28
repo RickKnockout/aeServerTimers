@@ -1,20 +1,13 @@
 # aeServerTimers
 
-For AstroEmpires game..
+For AstroEmpires
 
-Replaces local end of event times with server time.
-
-I'm far from a JS developer, it's probably spaghetti code, but it seems to work. 
+Replaces local end of event times with server time, also colorizes your timers.
 
 Requires either Firefox with Greasemonkey, or Chrome / Safari  with Tampermonkey.
+
 Install whichever userscript for the browser you are using.
-Make sure you have skin set to Dark Astros, and you have 
- Display animated server time.
- Display animated local time.
- Display end times of events (in local time).
 
-All of the above enabled.
 
-In the future I will be updating it so it should work regardless of the options.
 
 -Rick
