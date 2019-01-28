@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name                AE Server Timers
+// @name                AE Server Timers Beta
 // @namespace           http://www.tampermonkey.net
 // @author              Rick 
 // @description         Replaces local with server times
