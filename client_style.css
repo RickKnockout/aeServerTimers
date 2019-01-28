@@ -1,0 +1,252 @@
+@-moz-document domain(astroempires.com),domain(angeldsis.info),domain(earthtools.ca),domain(angeldsis.com) {
+	.latebookmark {
+		background: red;
+	}
+	.MarkData {
+		text-indent: 15;
+		vertical-align: 3;
+		font-size: 9px;
+		color: rgb(160,160,160);
+	}
+	#angel_right_menu .helperMenu {
+		text-decoration: underline;
+	}
+}
+@-moz-document domain(angeldsis.info),domain(angeldsis.com),domain(incenter.earthtools.ca) {
+	#angel_right_menu {
+		position: absolute;
+		font-weight: bold;
+		right: 2px;
+		top: 80px;
+		cursor:pointer;
+	}
+}
+@-moz-document domain(astroempires.com), domain(91.198.47.209), domain(ext.earthtools.ca) {
+	#angel_right_menu {
+		position: absolute;
+		right: 2px;
+		top: 15px;
+		cursor:pointer;
+	}
+	#reply {
+		display: block;
+	}
+#status,#kashi_status {
+	border: 1px solid red;
+	text-align: left;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	z-index: 10001;
+	background: black;
+}
+.aeangel {
+	color: #ffffff;
+	font-family: verdana,ariel;
+	font-size: 12px;
+	font-size-adjust: none;
+	font-style: normal;
+	font-variant: normal;
+	line-height: normal;
+}
+.aeangel a {
+	color: gold;
+	text-decoration: none;
+}
+.aeangel a:hover {
+	color: silver;
+	text-decoration: underline;
+}
+.aeangel img {
+	border: 0 none;
+}
+#status_hidden {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	border: 1px solid red;
+	z-index: 10001;
+	background: black;
+}
+input.aeangel {
+	background-color: #000066;
+	color: #ffffff;
+	border: 1px solid #9999ff;
+	font-size: 11px;
+	font-stretch: normal;
+	cursor: pointer;
+}
+div.special,span.special,td.special,a.special {
+	border: 1px solid blue;
+	padding: 3px;
+}
+#advertising {
+	display: none;
+}
+.aeangel td {
+	padding-left: 6px;
+}
+
+
+
+.notifier {
+	background-color: Black;
+	border: solid 1px;
+	padding: 10px 10px 10px 10px;
+}
+.notifierError {
+	background-color: Black;
+	border: solid 2px;
+	color: red;
+	padding: 10px 10px 10px 10px;
+}
+hr.cphr {
+	color: orange;
+	width: 400px;
+}
+.cpscripttimes {
+	text-align: center;
+	margin:0 auto;
+	width:200px;
+	background-color: #191919;
+	border: #333333 solid 1px;
+	padding-bottom: 10px;
+	color: white;
+	margin-top: 10px;
+	font-size: 8px;
+	opacity: 0.82;
+	z-index: 0;
+}
+.gm_update_alert_buttons {
+	position: relative;
+	top: -5px;
+	margin: 5px;
+}
+#gm_update_alert_button_close {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	padding: 3px 5px 3px 5px;
+	border-style: outset;
+	border-width: thin;
+	z-index: 11;
+	background-color: orange;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+.gm_update_alert_buttons span, .gm_update_alert_buttons span a  {
+	text-decoration:underline;
+	color: #003399;
+	font-weight: bold;
+	cursor:pointer;
+}
+.gm_update_alert_buttons span a:hover  {
+	text-decoration:underline;
+	color: #990033;
+	font-weight: bold;
+	cursor:pointer;
+}
+#gm_update_title {
+	font-weight:bold;
+	color:orange;
+}
+#queueFooter {
+	z-index:4;
+	position: fixed;
+	clear: both;
+	width: 100%;
+	bottom: 0px;
+	left: 0px;
+	align: center;
+}
+.tabMain {
+	border: 1px solid red;
+	padding: 2px;
+}
+.tabTab {
+	border: 1px solid green;
+	padding: 2px;
+	cursor: pointer;
+}
+.tabActive {
+	background: gray;
+}
+#cpmenu {
+	font-size: 8px;
+}
+progressmeter[mode="undetermined"] {
+  -moz-binding: url("chrome://global/content/bindings/progressmeter.xml#progressmeter-undetermined");
+}
+.timerdone {
+	background: red;
+}
+.timersec {
+	color: red;
+}
+.timermin {
+	color:#FFAA00;
+}
+.timerhour {
+	color:#8888FF;
+}
+.timerday {
+	color:#DDDDDD;
+}
+.fleet_visible {
+	background: red;
+}
+.fleet_hidden {
+	background: green;
+}
+	.aeangel.scoutInProgress {
+		text-align: center;
+	}
+/*.helperMenu {
+	z-index: 10001;
+}*/
+/* aebits used, converted at revision 616
+ * <1h color:#FFAA00;
+ * <2h color:#2222FF;
+ * <3h color:#4444FF;
+ * <6h color:#8888FF;
+ * <12h color:#BBBBFF;
+ * <24h color:#FFFFFF;
+ * <48h color:#DDDDDD;
+ * * color:#BBBBBB; */
+	#gs_lz_table tr:hover, #gs_scout_group tr:hover, #bases_list table tr:hover, #empire_technologies table tr:hover, #empire_technologies_research table tr:hover, #empire_units_units table tr:hover, #empire_units_defenses table tr:hover, #ranks_table-guilds tr:hover, #empire_capacities table tr:hover, #empire_economy_occupied table tr:hover, #empire_economy_bases table tr:hover, #commanders_box table tr:hover, #bookmarks-table table tr:hover, #fleets-list table tr:hover {
+		background: #252525;
+	}
+	#hint_wrap, #hint {
+		text-align: center;
+	}
+	#legion_tools {
+		border: 1px solid red;
+		z-index:4;
+		position: fixed;
+		bottom: 10px;
+		left: 10px;
+	}
+	#map_controls {
+		margin-left:auto;
+		margin-right:auto;
+		width: 40%;
+	}
+	#legion_error {
+		color: #ffffff;
+		font: bold 12px verdana, arial;
+	}
+	.super_scanners table {
+		min-width: 80%;
+	}
+	.dsis {
+		font-weight: bold !important;
+		color: #FFFF33 !important;
+		background-color: #006666 !important;
+		border-style: ridge !important;
+		border-color: #00FFCC !important;
+	}
+	.fleetCell {
+		border: #000066 solid 1px;
+		border-width: 1 1 1 1;
+	}
+}
