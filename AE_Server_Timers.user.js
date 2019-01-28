@@ -26,7 +26,7 @@ window.addEventListener('beforescriptexecute',
     var originalScript = event.target;
     if(/js_timers_v1\.12\.js/.test(originalScript.src)){ 
     var replacementScript = document.createElement('script');
-    replacementScript.src = 'https://cdn.jsdelivr.net/gh/cruentus/aeServerTimers/servertimers7.js';
+    replacementScript.src = 'https://cdn.jsdelivr.net/gh/cruentus/aeServerTimers@beta/servertimersBETA5.js';
     originalScript.parentNode.replaceChild(replacementScript, originalScript);
     changed--;
     }
