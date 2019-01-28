@@ -135,6 +135,7 @@ function header_timer() {
 var timerFormat = 2; 	// timer format: 0 = h:m:s , 1 = h:m:s - end, 2 = h:m:s <br> end
 
 function timers() {     // updates timers to include durations and end dates
+
 /**
   var now_date = new Date;        // get now date
   var now_date_ms = now_date.getTime();
@@ -369,6 +370,7 @@ function update_timers (class_name,show_changes) {
 	var diff = (now - start_date) / 1000;
 	var sec_to_end;
 	var elem,m,h,s,n;
+	var elem2;
 
 	for(n=0; n<timers.length; n++) {
 		elem = timers[n];
@@ -392,9 +394,11 @@ function update_timers (class_name,show_changes) {
 			s = Math.floor( (sec_to_end %60) );
 			if (show_changes) {
 				elem.textContent = h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-				/** 
 				if (display_end_time) {
-					var end_date_ms = start_date_ms + (elem.title * 1000);
+					elem2 = document.getElementById('server-time'); // html element to update
+					var server_date = new Date(elem2.title); // retrieve server time from html title element (2010/01/01 01:01:01)
+					var server_date_ms = server_date.getTime();
+					var end_date_ms = server_date_ms + (elem.title * 1000);
 					var end_time = putDateTime(new Date(end_date_ms), true);
 					if (timerFormat==1) {
 						elem.innerHTML += ' - <span class="comment help">' + end_time + '</span>';
@@ -403,7 +407,6 @@ function update_timers (class_name,show_changes) {
 						elem.innerHTML += '<br /><span class="comment help">' + end_time + '</span>';
 					}
 				}
-				**/
 			}
 		} else {
 			elem.textContent = 'DONE';
