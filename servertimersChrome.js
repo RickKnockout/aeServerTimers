@@ -392,7 +392,6 @@ function update_timers (class_name,show_changes) {
 			h = Math.floor(sec_to_end/3600);
 			m = Math.floor( (sec_to_end % 3600)/60 );
 			s = Math.floor( (sec_to_end %60) );
-			if (show_changes) {
 				elem.textContent = h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
 				if (display_end_time) {
 					elem2 = document.getElementById('server-time'); // html element to update
@@ -407,7 +406,7 @@ function update_timers (class_name,show_changes) {
 						elem.innerHTML += '<br /><span class="comment help">' + end_time + '</span>';
 					}
 				}
-			}
+			
 		} else {
 			elem.textContent = 'DONE';
 			change_class(class_name,'timerdone');
