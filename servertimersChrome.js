@@ -1,3 +1,7 @@
+var timers_converted = false;
+var lastmin = 0;
+var lasthour = 0;
+var lastday = 0;
 var start_date			= new Date; 				// get script start client date
 var start_date_ms		= start_date.getTime();		// get script start client date milisecounds
 
@@ -8,7 +12,6 @@ var clientDate_format	= 0; 						// Date format, 0 = "20 Jan 2010", 1 = "Jan 20 
 var display_animated_server_time	= true;
 var display_local_time				= true;
 var display_end_time				= true;
-
 var first_display					= true;
 
 var label_today		= "Today";
@@ -125,7 +128,6 @@ function header_timer() {
 
 		elem.innerHTML = putDateTime(now_date, false);
 	}
-
 	timers();
 }
 
@@ -133,6 +135,8 @@ function header_timer() {
 var timerFormat = 2; 	// timer format: 0 = h:m:s , 1 = h:m:s - end, 2 = h:m:s <br> end
 
 function timers() {     // updates timers to include durations and end dates
+
+/**
   var now_date = new Date;        // get now date
   var now_date_ms = now_date.getTime();
   var n = 1;
@@ -209,6 +213,29 @@ function timers() {     // updates timers to include durations and end dates
 
     n++;
   }
+**/
+	var show_changes = true;
+	var n = 1;
+	var sec_min = 0;
+	var elem
+	var now = (new Date).getTime();						// get now date
+	var diff = (now - start_date_ms) / 1000;			// get difference milliseconds between dates
+	
+	if (!timers_converted) convert_timers();
+	
+	if (diff < 30) show_changes = true;
+	else if (window.isActive && (typeof window.isActive === "function")) {
+		if (!window.isActive()) show_changes = false;
+	}
+
+	update_timers('timersec',show_changes);
+	if ((diff < 5) || (diff - lastmin) > 30) { // every minute 
+		lastmin = diff;
+		update_timers('timermin',show_changes);
+		update_timers('timerdone',false);
+	}
+	if ((diff < 5) || (diff - lasthour) > 600) { lasthour = diff; update_timers('timerhour',show_changes); } // every 10mins
+	if ((diff < 5) || (diff - lastday) > 3600) { lastday = diff; update_timers('timerday',show_changes); } // every hour
 }
 
 function update_timer_after_ajax(element_name) {			// add seconds to timer to compensate ajax have loaded later regaring page time
@@ -267,7 +294,7 @@ function timersDisplay_on_interval() {
 	timersDisplay_update();
 }
 function timersDisplay_convert_timer(d) {
-	if (d < 0) {
+/**	if (d < 0) {
 		d = 0
 		return "---"
 	} else {
@@ -275,7 +302,9 @@ function timersDisplay_convert_timer(d) {
 		//return (c < 10 ? "0" + c : c) + ":" + (a < 10 ? "0" + a : a) + ":" + (b < 10 ? "0" + b : b)
 		return c + ":" + (a < 10 ? "0" + a : a) + ":" + (b < 10 ? "0" + b : b)
 	}
+**/
 }
+
 function timersDisplay_convert_clock(f) {
 	var d = Math.floor(f / 3600) % 24, c = d <= 12 ? d : d - 12, e = d < 12 ? "AM" : "PM", a = Math.floor(f / 60) % 60, b = f % 60; a = a < 10 ? "0" + a : a; b = b < 10 ? "0" + b : b;
 	switch (format) {
@@ -293,7 +322,146 @@ function timersDisplay() {
 	timersDisplay_on_interval();
 }
 
+function new_t() {
+	var now = (new Date).getTime();
+	diff = (now - start_date) / 1000;
+
+	if (!timers_converted) convert_timers();
+
+	update_timers('timersec');
+	if ((diff < 30) || (diff - lastmin) > 30) { lastmin = diff; update_timers('timermin'); } // every minute 
+	if ((diff < 30) || (diff - lasthour) > 600) { lasthour = diff; update_timers('timerhour'); } // every 10mins
+	if ((diff < 30) || (diff - lastday) > 3600) { lastday = diff; update_timers('timerday'); } // every hour
+	// timer classes
+	// timersec == 0s to 5m, updates every tick (200ms?)
+	// timermin == 5m to 1h, updates every 30 seconds (worst case, last tick at 0:00:30)
+	// timerhour == 1h to 24h, updates every 10 minutes
+	// timerday == 24h+, updates every 1 hour
+}
+function new_timers() {			// updates timers to include durations and end dates
+	var show_changes = true;
+	var n = 1;
+	var sec_min = 0;
+	var elem
+	var now = (new Date).getTime();						// get now date
+	var diff = (now - start_date_ms) / 1000;			// get difference milliseconds between dates
+	
+	if (!timers_converted) convert_timers();
+	
+	if (diff < 30) show_changes = true;
+	else if (window.isActive && (typeof window.isActive === "function")) {
+		if (!window.isActive()) show_changes = false;
+	}
+
+	update_timers('timersec',show_changes);
+	if ((diff < 5) || (diff - lastmin) > 30) { // every minute 
+		lastmin = diff;
+		update_timers('timermin',show_changes);
+		update_timers('timerdone',false);
+	}
+	if ((diff < 5) || (diff - lasthour) > 600) { lasthour = diff; update_timers('timerhour',show_changes); } // every 10mins
+	if ((diff < 5) || (diff - lastday) > 3600) { lastday = diff; update_timers('timerday',show_changes); } // every hour
+}
+function update_timers (class_name,show_changes) {
+	//var beeped = 0;
+	var timers = document.getElementsByClassName(class_name);
+	if (timers.length == 0) return;
+	var now = (new Date).getTime();
+	var diff = (now - start_date) / 1000;
+	var sec_to_end;
+	var elem,m,h,s,n;
+	var elem2;
+
+	for(n=0; n<timers.length; n++) {
+		elem = timers[n];
+		sec_to_end = elem.title - diff;
+
+		if (document.getElementById('prod_time_' + n)) {
+			sec_min = Number( document.getElementById('prod_time_'+n).title);
+			if (sec_to_end < sec_min ) sec_to_end = sec_min;
+		}
+
+		m = 0;
+		h = 0;
+		function change_class(old,new_class) {
+			if (old == new_class) return;
+			elem.className = elem.className.replace(old,new_class);
+			// window.dump('changing class from '+old+' to '+new_class+' for timer '+elem.id+'\n');
+		}
+		if (sec_to_end >= 1) {
+			h = Math.floor(sec_to_end/3600);
+			m = Math.floor( (sec_to_end % 3600)/60 );
+			s = Math.floor( (sec_to_end %60) );
+				elem.textContent = h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+				if (display_end_time) {
+					elem2 = document.getElementById('server-time'); // html element to update
+					var server_date = new Date(elem2.title); // retrieve server time from html title element (2010/01/01 01:01:01)
+					var server_date_ms = server_date.getTime();
+					var end_date_ms = server_date_ms + (elem.title * 1000);
+					var end_time = putDateTime(new Date(end_date_ms), true);
+					if (timerFormat==1) {
+						elem.innerHTML += ' - <span class="comment help">' + end_time + '</span>';
+					}
+					if (timerFormat==2) {
+						elem.innerHTML += '<br /><span class="comment help">' + end_time + '</span>';
+					}
+				}
+			
+		} else {
+			elem.textContent = 'DONE';
+			change_class(class_name,'timerdone');
+		}
+		// downgrade timers (speed them up)
+		if ((class_name == 'timerday') && (h < 24)) change_class('timerday','timerhour');
+		if ((class_name == 'timerhour') && (h == 0)) change_class('timerhour','timermin');
+		if ((class_name == 'timermin') && (sec_to_end < (5 * 60))) change_class('timermin','timersec');
+
+		// upgrade timers (slow them down)
+		if ((class_name == 'timersec') && (sec_to_end > (5 * 60))) change_class('timersec','timermin');
+		if ((class_name == 'timermin') && (sec_to_end > 3600)) change_class('timermin','timerhour');
+		if ((class_name == 'timerhour') && (sec_to_end > (24 * 3600))) change_class('timerhour','timerday');
+
+		/**
+		if (sec_to_end < beep_limit) {
+			if (beeped == 0) {
+				var ev = document.createEvent('Events');
+				ev.initEvent('timer_done', true, false);
+				if (document.title.indexOf('beep') == -1) {
+					document.title = 'beep! ' + document.title;
+				}
+				elem.dispatchEvent(ev);
+				beeped = 1;
+			}
+		}
+		**/
+	}
+}
+
+function convert_timers() {
+	timers_converted = true;
+	lastday = lasthour = lastmin = 0;
+	var elem;
+	var n = 1;
+
+	while (elem = document.getElementById('timer'+n)) {
+		var now = Date.now();
+		var diff = (now - start_date) / 1000;
+		var s = elem.title - diff;
+		var class_name = 'timersec';
+		if (s > (3600*24)) class_name = 'timerday';
+		else if (s > 3600) class_name = 'timerhour';
+		else if (s > (60*5)) class_name = 'timermin';
+
+		//elem.setUserData('original_class',elem.className,null);
+		elem.className = elem.className + ' timer ' + class_name;
+		n++;
+	}
+	update_timers('timerday');
+}
 
 $(document).ready(function () {
 	timersDisplay();
+	convert_timers();
 });
+
+
