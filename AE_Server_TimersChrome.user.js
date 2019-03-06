@@ -21,7 +21,7 @@
 var script=document.createElement('script');
 window.addEventListener('load',
   function(event){
-script.src='https://cdn.jsdelivr.net/gh/cruentus/aeServerTimers@beta/servertimersChrome.js';
+script.src='https://cdn.jsdelivr.net/gh/cruentus/aeServerTimers/servertimersChrome.js';
 //script.src='https://raw.githubusercontent.com/cruentus/aeServerTimers/beta/servertimersChrome.js';
 document.getElementsByTagName('head')[0].appendChild(script);
 }, true);
