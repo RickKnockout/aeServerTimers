@@ -386,7 +386,7 @@ function update_timers (class_name,show_changes) {
 		function change_class(old,new_class) {
 			if (old == new_class) return;
 			elem.className = elem.className.replace(old,new_class);
-			window.dump('changing class from '+old+' to '+new_class+' for timer '+elem.id+'\n');
+			// window.dump('changing class from '+old+' to '+new_class+' for timer '+elem.id+'\n');
 		}
 		if (sec_to_end >= 1) {
 			h = Math.floor(sec_to_end/3600);
